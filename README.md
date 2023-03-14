@@ -1,4 +1,4 @@
 # PA
-Proiectarea Algoritmilor - An 1 Sem 2
+Proiectarea Algoritmilor - 1st year, 2nd semester
 
-repository containing lab work and homeworks for PA (DSA)
+the repositoty contains the notable projects done within PA (basically the same curriculum of Data Structures and Algorhytms).
