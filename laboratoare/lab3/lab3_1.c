@@ -25,6 +25,26 @@ void swap2(int a, int b)
     b = temp;
 }
 
+void printValues(int v[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        printf(" | %d | ", v[i]);
+    }
+
+    printf("\n");
+}
+
+void qprintValues(int v[], int n)
+{
+    for (int i = n-1; i >= 0; i--)
+    {
+        printf(" | %d | ", v[i]);
+    }
+
+    printf("\n");
+}
+
 void bubbleSort(int arr[], int n)
 {
     int i, j;
@@ -35,16 +55,6 @@ void bubbleSort(int arr[], int n)
             if (arr[j] > arr[j + 1])
                 swap(&arr[j], &arr[j + 1]);
         }
-}
-
-void printValues(int v[], int n)
-{
-    for (int i = 0; i < n; i++)
-    {
-        printf(" | %d | ", v[i]);
-    }
-
-    printf("\n");
 }
 
 void insertSort(int v[], int n)
@@ -197,13 +207,13 @@ int main()
     if (strcmp(which, "quick") == 0)
     {
         quickSort(V1, 0, 6);
-        printValues(V1, n);
+        qprintValues(V1, n);
 
         quickSort(V2, 0, 6);
-        printValues(V2, n);
+        qprintValues(V2, n);
 
         quickSort(V3, 0, 6);
-        printValues(V3, n);
+        qprintValues(V3, n);
     }
 
     if (strcmp(which, "bubble") == 0)
@@ -255,3 +265,4 @@ int main()
     }
 
     return 0;
+}
