@@ -1,0 +1,1 @@
+Desi ambele au complexitate n logn, am gasit Kruskal mai comod de implementat. Prin modul sau de lucru, banuiesc ca e mai bun in situatii cand costurile au diferente mari de valoare, si Prim cand au valori mai mici/ graful are foarte multe noduri si e incomoda parcurgerea muchiilor crescator ca valoare.
