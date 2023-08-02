@@ -1,5 +1,3 @@
-/*exista sau nu drum intre 2 noduri din graf*/
-
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -8,6 +6,9 @@ typedef struct Node
     int data;
     struct Node *next;
 } NODE;
+/// pentru simplitate, folosim int uri pt a numi restaurantel/locatiile
+/// ex: 1 - restaurantul 1 si tot asa, ar fi luat prea mult sa citim
+/// stringuri pt numele lor
 
 typedef struct Graph
 {
@@ -102,7 +103,7 @@ void DFS(GPH *graph, STK *stack, int vertex_nr)
 
 void insert_edges(GPH *graph, int nr_of_edges, int nr_of_vertices)
 {
-    int src, dest,i;
+    int src, dest, i;
 
     printf("adauga %d muchii (de la 1 la %d)\n", nr_of_edges, nr_of_vertices);
 
@@ -118,6 +119,41 @@ void wipe_visited_list(GPH *graph, int nr_of_vertices)
     for (int i = 0; i < nr_of_vertices; i++)
     {
         graph->visited[i] = 0;
+    }
+}
+
+void can_be_reached(GPH *graph, int nr_of_vertices, STK *stack1, STK *stack2)
+{
+    /// pe scurt luam functionalitatea care e deja pusa in main,
+    // si luam 2 cate 2 fiecare nod si aflam daca e sau nu drum intre ele
+    // in can_be_reached stocam cu 1 sau 0 daca se poate ajunge la un nod
+    // daca nu, adica daca ramane 0, in indexul specific, nu se poate ajunge la
+    // acel nod . In functie de indexurile la care este 0, spunem ca nu se poate
+    // ajunge la nodurile de acel index
+
+    int *can_be_reached = calloc(5, sizeof(int)); // 0 sau 1 daca poate fi sau nu ajuns
+
+    for (int i = 0; i < nr_of_vertices; i++) // aici i tine loc de numar adica de restaurant
+    {
+        for (int j = 0; j < 5; j++)
+        {
+            DFS(graph, stack1, i);
+
+            wipe_visited_list(graph, nr_of_vertices);
+
+            DFS(graph, stack2, j);
+
+            for (int j = 0; j < nr_of_vertices && !ans; j++)
+            {
+                for (int i = 0; i < nr_of_vertices && !ans; i++)
+                {
+                    if ((stack1->array[i] == j) && (stack2->array[j] == i))
+                    {
+                        can_be_reached = 1;
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -143,42 +179,9 @@ int main()
     STK *stack1 = create_stack(2 * nr_of_vertices);
     STK *stack2 = create_stack(2 * nr_of_vertices);
 
-    insert_edges(graph,nr_of_edges,nr_of_vertices);
+    insert_edges(graph, nr_of_edges, nr_of_vertices);
 
-    printf("nodul 1:");
-    scanf("%d", &vertex_1);
+    can_be_reached(graph, nr_of_vertices, stack1, stack2);
 
-    printf("DFS:");
-    DFS(graph, stack1, vertex_1);
-
-    wipe_visited_list(graph, nr_of_vertices);
-
-    printf("\nnodul 2:");
-    scanf("%d", &vertex_2);
-
-    printf("DFS:");
-    DFS(graph, stack2, vertex_2);
-
-    for (int j = 0; j < nr_of_vertices && !ans; j++)
-    {
-        for (int i = 0; i < nr_of_vertices && !ans; i++)
-        {
-            if ((stack1->array[i] == vertex_2) && (stack2->array[j] == vertex_1))
-            {
-                ans = 1;
-            }
-        }
-    }
-
-    if (ans == 1)
-    {
-        printf("\nexista drum de la %d la %d", vertex_1, vertex_2);
-    }
-
-    else
-    {
-        printf("\nnu exista drum");
-    }
     return 0;
-    
 }

@@ -104,88 +104,12 @@ int find(int parent[], int node)
     return find(parent, parent[node]);
 }
 
-void union_nodes(int parent[], int node1, int node2)
-{
-    int parent_node1 = find(parent, node1);
-    int parent_node2 = find(parent, node2);
-
-    parent[parent_node1] = parent_node2;
-}
-
 int compare_edges(const void *a, const void *b)
 {
     EDGE *edge_a = (EDGE *)a;
     EDGE *edge_b = (EDGE *)b;
 
     return edge_a->edge_value - edge_b->edge_value;
-}
-
-void kruskal(GPH *graph, FILE *output)
-{
-    // Allocate memory for visited array
-    int *visited = calloc(SIZE, sizeof(int));
-
-    // Allocate memory for edges array
-    EDGE *edges = malloc(graph->nr_of_edges * sizeof(EDGE));
-
-    // Copy edges from adjacency matrix to edges array
-    int k = 0;
-
-    for (int i = 0; i < graph->nr_of_vertices; i++)
-    {
-        for (int j = 0; j < graph->nr_of_vertices; j++)
-        {
-            if (*(graph->adjacency_matrix + i * graph->nr_of_vertices + j) != 0)
-            {
-                (edges + k)->source = i;
-                (edges + k)->destination = j;
-                (edges + k)->edge_value = *(graph->adjacency_matrix + i * graph->nr_of_vertices + j);
-                k++;
-            }
-        }
-    }
-
-    // Sort edges array in ascending order of edge value
-    qsort(edges, graph->nr_of_edges, sizeof(EDGE), cmp_func);
-
-    int parent[SIZE];
-
-    // Initialize parent array
-    for (int i = 0; i < SIZE; i++)
-    {
-        parent[i] = -1;
-    }
-
-    int total_weight = 0;
-
-    printf("MST folosind kruskal: \n");
-    fprintf(output, "MST folosind kruskal: \n");
-
-    for (int i = 0; i < graph->nr_of_edges; i++)
-    {
-        int source = (edges + i)->source;
-        int dest = (edges + i)->destination;
-        int edge_value = (edges + i)->edge_value;
-
-        int parent_src = find(parent, source);
-        int parent_dest = find(parent, dest);
-
-        if (parent_src != parent_dest)
-        {
-            printf("%d -> %d\n", source, dest);
-            fprintf(output, "%d -> %d\n", source, dest);
-            total_weight += edge_value;
-            union_nodes(parent, parent_src, parent_dest);
-        }
-    }
-
-    // Print the total weight of the MST
-    printf("Total weight of MST: %d\n", total_weight);
-    fprintf(output, "Total weight of MST: %d\n", total_weight);
-
-    // Free memory
-    free(visited);
-    free(edges);
 }
 
 void prim(GPH *graph, FILE *output)
@@ -199,7 +123,6 @@ void prim(GPH *graph, FILE *output)
     printf("MST folosind prim: \n");
     fprintf(output, "MST folosind prim: \n");
 
-    // cautam muchia cu valoarea minima pentru a incepe de la ea
     for (int i = 0; i < SIZE; i++)
     {
         for (int j = 0; j < SIZE; j++)
@@ -286,8 +209,6 @@ int main()
     display_adj_matrix(graph->adjacency_matrix, export_file);
 
     prim(graph, export_file);
-
-    kruskal(graph, export_file);
 
     fclose(export_file);
 

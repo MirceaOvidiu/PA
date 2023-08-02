@@ -1,0 +1,15 @@
+Se definesc structurile de date node și queue pentru a reprezenta nodurile arborelui și elementele cozii.
+Funcția createNode este definită pentru a crea un nou nod al arborelui cu un ingredient specificat.
+Funcția add_ingredients este utilizată pentru a crea un arbore binar și a adăuga ingrediente specifice la fiecare nod. Aceasta utilizează funcția createNode pentru a crea fiecare nod și le leagă împreună într-un arbore specific.
+Funcția readTree permite utilizatorului să introducă manual un arbore prin intermediul unei interfețe de consolă. Aceasta citeste ingredientele pentru fiecare nod și construiește arborele corespunzător.
+Funcția max este o funcție auxiliară care returnează valoarea maximă dintre două numere.
+Funcția height calculează înălțimea arborelui, adică numărul maxim de noduri pe un drum de la rădăcină la o frunză.
+Funcțiile de traversare preOrder, inOrder și postOrder sunt implementate pentru a realiza parcurgerile pre-ordonată, în-ordonată și post-ordonată a arborelui. Acestea folosesc o condiție de ieșire specifică pentru a opri parcurgerea arborelui la un anumit nivel.
+Funcția isQueueEmpty verifică dacă o coadă este goală sau nu.
+Funcțiile enqueue și dequeue implementează operațiile de adăugare și ștergere într-o coadă.
+În funcția main, este creat un arbore inițial și o coadă goală.
+Se adaugă câteva elemente în coadă utilizând funcția enqueue.
+Se adaugă ingrediente în arbore folosind funcția add_ingredients.
+Se deschide un fișier pentru scriere.
+Se apelează funcția inOrder pentru a realiza o parcurgere în-ordonată a arborelui și a scrie ingredientele în fișierul "sandwich.txt".
+Programul se încheie și fișierul este închis.

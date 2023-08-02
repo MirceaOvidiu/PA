@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#define BUFFER_SIZE 7
+#define BUFFER_SIZE 10
 #define SIZE 12
 
 typedef struct Graph

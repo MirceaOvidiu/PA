@@ -23,16 +23,3 @@ muchia12<->9 cu valoarea 1
 muchia4<->6 cu valoarea 2
 muchia7<->5 cu valoarea 5
 Costul MST-ului: 18
-MST folosind kruskal: 
-muchia1<->7 cu valoarea 1
-muchia1<->10 cu valoarea 1
-muchia1<->11 cu valoarea 1
-muchia10<->8 cu valoarea 1
-muchia2<->3 cu valoarea 1
-muchia12<->9 cu valoarea 1
-muchia3<->12 cu valoarea 2
-muchia1<->2 cu valoarea 2
-muchia4<->6 cu valoarea 2
-muchia7<->5 cu valoarea 5
-Costul MST-ului: 18
-

@@ -1,7 +1,3 @@
-/*Implementați o funcție ca să verificați că un binary tree este echilibrat
-(doi subarbori ai oricărui nod nu au o diferență de nivel mai mare de 1). 3p
-*/
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -9,7 +5,7 @@
 
 typedef struct node
 {
-    int data;
+    char ingredient;
     struct node *lchild;
     struct node *rchild;
 } NODE;
@@ -18,8 +14,8 @@ struct node *init_root()
 {
     NODE *root = malloc(sizeof(NODE));
 
-    printf("valoarea din root:");
-    scanf("%d", &root->data);
+    printf("ingredientul din root:");
+    scanf("%d", &root->ingredient);
     printf("\n");
 
     root->lchild = NULL;
@@ -30,33 +26,18 @@ struct node *init_root()
 
 void init_children(struct node *sample)
 {
-    char ans[2];
-
-    printf("ii punem copil stanga(y/n)?");
-    scanf("%s", &ans);
-
-    if (strcmp(ans, "y") == 0)
-    {
         sample->lchild = malloc(sizeof(NODE));
 
         printf("de valoarea: ");
-        scanf("%d", &sample->lchild->data);
+        scanf("%d", &sample->lchild->ingredient);
         sample->lchild->lchild = NULL;
         sample->lchild->rchild = NULL;
-    }
 
-    printf("ii punem copil dreapta(y/n)?");
-    scanf("%s", &ans);
-
-    if (strcmp(ans, "y") == 0)
-    {
         sample->rchild = malloc(sizeof(NODE));
-
         printf("de valoarea: ");
-        scanf("%d", &sample->rchild->data);
+        scanf("%d", &sample->rchild->ingredient);
         sample->rchild->lchild = NULL;
         sample->rchild->rchild = NULL;
-    }
 }
 
 int is_balanced(NODE *root)
@@ -97,10 +78,6 @@ int main()
     printf("suntem la root->lchild->lchild \n");
     init_children(root->lchild->lchild);
 
-    if (is_balanced(root) > 0)
-        printf("balanced");
-    else
-        printf("not balanced");
 
     return 0;
 }

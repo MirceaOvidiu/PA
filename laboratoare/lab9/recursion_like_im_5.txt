@@ -1,0 +1,4 @@
+Hai sa ne imaginam ca ai un fagure de miere, si fiecare celula e ca o camera mica, care are iar langa ea alte celule.
+Sa spunem ca vrei sa le numeri. Simplu, incepi cu una - 1. Dar, de aici, este mai interesant. Fiecare celula este inconjurata de alte celule, ca vecini. Deci, daca vrei să numeri toate celulele din fagurele de miere, trebuie sa numeri nu numai celulele pe care le vezi imediat, ci si celulele care sunt conectate la ele.
+Pentru a număra acele celule conectate, poți folosi recursivitatea. Este ca o regula speciala care spune: "Daca găsești o celulă, uită-te la vecinii ei și numara-i si pe aceia". Si cand te uiti la acei vecini, ei vor avea, de asemenea, proprii lor vecini, deci ii numeri și pe aceștia. Și acest proces continua pana cand ai privit toate celulele.
+Sa stii ca recursivitatea poate fi complicata si pentru cei mari, chiar si pentru studentii de la Automatica uneori!
